@@ -8,20 +8,12 @@ using System.Text.RegularExpressions;
 namespace ProjectEuler.Framework {
     class Utils {
 
-        /*public static Problem GetProblem(int id) {
-            Console.WriteLine("Available problems: " + string.Join(", ", GetProblemList()));
-            Console.WriteLine("Please input problem id");
-            while (true) {
-                string input = Console.ReadLine();
-                string problemCheck = "ProjectEuler.Problems.Problem" + input;
-                Type type = Type.GetType(problemCheck);
-                if (type != null) {
-                    return (Problem)Activator.CreateInstance(type);
-                }
-                Console.WriteLine("Problem " + input + " not found, try again");
-            }
-        }*/
-
+        /// <summary>
+        /// Get problem object from supplied id
+        /// </summary>
+        /// <param name="id">Id of problem to get</param>
+        /// <returns>Problem object</returns>
+        /// <exception cref="ArgumentException">Thrown whenever a problem id can not be found</exception>
         public static Problem GetProblem(int id) {
             string problemCheck = "ProjectEuler.Problems.Problem" + id;
             Type type = Type.GetType(problemCheck);
@@ -31,6 +23,10 @@ namespace ProjectEuler.Framework {
             return (Problem)Activator.CreateInstance(type);
         }
 
+        /// <summary>
+        /// Get a list of integers of all available problems
+        /// </summary>
+        /// <returns>List of all available problems</returns>
         public static List<int> GetProblemList() {
             Type[] typeList =
                 Assembly.GetExecutingAssembly()
@@ -44,8 +40,26 @@ namespace ProjectEuler.Framework {
             }
             nums.Sort();
             return nums;
+        }
+
+        /// <summary>
+        /// Get all problem objects in a list
+        /// </summary>
+        /// <returns>List containing all problem objects</returns>
+        public static List<Problem> GetAllProblems() {
+            List<Problem> problems = new List<Problem>();
+            foreach (int i in GetProblemList()) {
+                problems.Add(GetProblem(i));
+            }
+            return problems;
         } 
 
+        /// <summary>
+        /// Get user input
+        /// </summary>
+        /// <typeparam name="T">The type of input you want</typeparam>
+        /// <param name="msg">Message to display to user</param>
+        /// <returns>The user input converted to desired type</returns>
         public static T GetInput<T>(string msg) {
             TypeConverter converter = TypeDescriptor.GetConverter(typeof (T));
             while (true) {
@@ -61,6 +75,11 @@ namespace ProjectEuler.Framework {
             }
         }
 
+        /// <summary>
+        /// Adds ordinal to a number
+        /// </summary>
+        /// <param name="num">Number to add ordinal to</param>
+        /// <returns>String containing number and ordinal</returns>
         public static string AddOrdinal(int num) {
             if (num <= 0) {
                 return num.ToString();
@@ -83,6 +102,11 @@ namespace ProjectEuler.Framework {
             }
         }
 
+        /// <summary>
+        /// Check whether a number is prime or not
+        /// </summary>
+        /// <param name="num">Number to check</param>
+        /// <returns>If the number is prime or not</returns>
         public static bool IsPrime(int num) {
             for (int i = 2; i <= num / 2; i++) {
                 if (num % i == 0) {
@@ -92,6 +116,12 @@ namespace ProjectEuler.Framework {
             return true;
         }
 
+        /// <summary>
+        /// Get a list of all primes below a given value
+        /// </summary>
+        /// <param name="max">Maximum number to check</param>
+        /// <param name="min">Lowest number to check</param>
+        /// <returns>List of all primes between given values</returns>
         public static List<int> GetAllPrimes(int max, int min = 2) {
             List<int> primes = new List<int>();
             for (int i = min; i < max; i++) {
@@ -102,10 +132,20 @@ namespace ProjectEuler.Framework {
             return primes;
         }
 
+        /// <summary>
+        /// Gets the Nth triangular number
+        /// </summary>
+        /// <param name="num">The triangular number to get</param>
+        /// <returns>The triangular number</returns>
         public static int TriangularNumber(int num) {
             return Enumerable.Range(1, num).Sum();
         }
 
+        /// <summary>
+        /// Get all divisors of given number
+        /// </summary>
+        /// <param name="num">Number to get divisors for</param>
+        /// <returns>List of all divisors for given number</returns>
         public static List<int> GetAllDivisors(int num) {
             List<int> divisors = new List<int> {1, num};
             for (int i = 2; i <= num/2; i++) {
