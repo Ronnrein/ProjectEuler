@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
     public class Problem8 : Problem {

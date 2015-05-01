@@ -1,0 +1,13 @@
+﻿<VSTemplate Type="Item" Version="2.0.0"
+    xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+    <TemplateData>
+        <Name>Project Euler Problem</Name>
+        <Description>Template for project euler problems.</Description>
+        <Icon>Icon.png</Icon>
+        <ProjectType>CSharp</ProjectType>
+        <DefaultName>Problem0</DefaultName>
+    </TemplateData>
+    <TemplateContent>
+        <ProjectItem ReplaceParameters="true">ProblemTemplate.cs</ProjectItem>
+    </TemplateContent>
+</VSTemplate>

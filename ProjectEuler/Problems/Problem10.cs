@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
     public class Problem10 : Problem {

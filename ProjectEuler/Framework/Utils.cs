@@ -2,10 +2,49 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Timers;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
-namespace ProjectEuler {
+namespace ProjectEuler.Framework {
     class Utils {
+
+        /*public static Problem GetProblem(int id) {
+            Console.WriteLine("Available problems: " + string.Join(", ", GetProblemList()));
+            Console.WriteLine("Please input problem id");
+            while (true) {
+                string input = Console.ReadLine();
+                string problemCheck = "ProjectEuler.Problems.Problem" + input;
+                Type type = Type.GetType(problemCheck);
+                if (type != null) {
+                    return (Problem)Activator.CreateInstance(type);
+                }
+                Console.WriteLine("Problem " + input + " not found, try again");
+            }
+        }*/
+
+        public static Problem GetProblem(int id) {
+            string problemCheck = "ProjectEuler.Problems.Problem" + id;
+            Type type = Type.GetType(problemCheck);
+            if (type == null) {
+                throw new ArgumentException("There is no problem with id "+id);
+            }
+            return (Problem)Activator.CreateInstance(type);
+        }
+
+        public static List<int> GetProblemList() {
+            Type[] typeList =
+                Assembly.GetExecutingAssembly()
+                    .GetTypes()
+                    .Where(t => String.Equals(t.Namespace, "ProjectEuler.Problems", StringComparison.Ordinal))
+                    .ToArray();
+            List<int> nums = new List<int>();
+            foreach (Type type in typeList) {
+                int num = Int32.Parse(Regex.Replace(type.Name, "[^0-9.]", ""));
+                nums.Add(num);
+            }
+            nums.Sort();
+            return nums;
+        } 
 
         public static T GetInput<T>(string msg) {
             TypeConverter converter = TypeDescriptor.GetConverter(typeof (T));
@@ -32,7 +71,6 @@ namespace ProjectEuler {
                 case 13:
                     return num + "th";
             }
-
             switch (num%10) {
                 case 1:
                     return num + "st";
