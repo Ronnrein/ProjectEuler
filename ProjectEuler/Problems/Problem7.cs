@@ -49,7 +49,7 @@ namespace ProjectEuler.Problems {
             Console.WriteLine("Working...");
             while (currentPrime < num) {
                 i++;
-                if (Utils.IsPrime(i)) {
+                if (MathUtils.IsPrime(i)) {
                     currentPrime++;
                 }
             }

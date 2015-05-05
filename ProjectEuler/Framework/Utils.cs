@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace ProjectEuler.Framework {
-    class Utils {
+    static class Utils {
 
         /// <summary>
         /// Get problem object from supplied id
@@ -43,7 +43,7 @@ namespace ProjectEuler.Framework {
         }
 
         /// <summary>
-        /// Get all problem objects in a list
+        /// Get all problem objects
         /// </summary>
         /// <returns>List containing all problem objects</returns>
         public static List<Problem> GetAllProblems() {
@@ -103,58 +103,15 @@ namespace ProjectEuler.Framework {
         }
 
         /// <summary>
-        /// Check whether a number is prime or not
+        /// Populates array with given value
         /// </summary>
-        /// <param name="num">Number to check</param>
-        /// <returns>If the number is prime or not</returns>
-        public static bool IsPrime(int num) {
-            for (int i = 2; i <= num / 2; i++) {
-                if (num % i == 0) {
-                    return false;
-                }
+        /// <typeparam name="T">Type to populate with</typeparam>
+        /// <param name="a">Array to populate</param>
+        /// <param name="val">Object to populate with</param>
+        public static void Populate<T>(this T[] a, T val) {
+            for (int i = 0; i < a.Length; i++) {
+                a[i] = val;
             }
-            return true;
-        }
-
-        /// <summary>
-        /// Get a list of all primes below a given value
-        /// </summary>
-        /// <param name="max">Maximum number to check</param>
-        /// <param name="min">Lowest number to check</param>
-        /// <returns>List of all primes between given values</returns>
-        public static List<int> GetAllPrimes(int max, int min = 2) {
-            List<int> primes = new List<int>();
-            for (int i = min; i < max; i++) {
-                if (IsPrime(i)) {
-                    primes.Add(i);
-                }
-            }
-            return primes;
-        }
-
-        /// <summary>
-        /// Gets the Nth triangular number
-        /// </summary>
-        /// <param name="num">The triangular number to get</param>
-        /// <returns>The triangular number</returns>
-        public static int TriangularNumber(int num) {
-            return Enumerable.Range(1, num).Sum();
-        }
-
-        /// <summary>
-        /// Get all divisors of given number
-        /// </summary>
-        /// <param name="num">Number to get divisors for</param>
-        /// <returns>List of all divisors for given number</returns>
-        public static List<int> GetAllDivisors(int num) {
-            List<int> divisors = new List<int> {1, num};
-            for (int i = 2; i <= num/2; i++) {
-                float divisor = (float)num/(float)i;
-                if (divisor%1 == 0) {
-                    divisors.Add((int)divisor);
-                }
-            }
-            return divisors;
         }
 
     }

@@ -14,7 +14,7 @@ namespace ProjectEuler.Problems {
 
         public void Run() {
             int max = Utils.GetInput<int>("Input the max prime number to sum");
-            List<int> primes = Utils.GetAllPrimes(max);
+            List<int> primes = MathUtils.GetAllPrimes(max);
             long result = 0;
             foreach (int prime in primes) {
                 result += prime;

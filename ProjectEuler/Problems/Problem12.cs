@@ -15,8 +15,8 @@ namespace ProjectEuler.Problems {
             int input = Utils.GetInput<int>("How many divisors should be searched for");
             int i = 1;
             while (true) {
-                int tri = Utils.TriangularNumber(i);
-                int divisors = Utils.GetAllDivisors(tri).Count;
+                int tri = MathUtils.TriangularNumber(i);
+                int divisors = MathUtils.GetAllDivisors(tri).Count;
                 if (divisors > input) {
                     Console.WriteLine("The "+Utils.AddOrdinal(i)+" triangular number ("+tri+") has "+divisors+" divisors");
                     return;
