@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    public class Problem9 : Problem {
+    public class Problem9 : IProblem {
         public string Name {
             get { return "Special Pythagorean triplet"; }
         }

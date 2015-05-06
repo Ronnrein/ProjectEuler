@@ -2,7 +2,7 @@
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    public class Problem8 : Problem {
+    public class Problem8 : IProblem {
         public string Name {
             get { return "Largest product in a series"; }
         }

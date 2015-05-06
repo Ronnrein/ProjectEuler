@@ -191,5 +191,29 @@ namespace ProjectEuler.Framework {
             return true;
         }
 
+        /// <summary>
+        /// Gets the smallest multiple between two numbers
+        /// </summary>
+        /// <param name="min">Minimum number</param>
+        /// <param name="max">Maximum number</param>
+        /// <returns></returns>
+        public static int SmallestMultiple(int min, int max) {
+            int i = 0;
+            while (true) {
+                i++;
+                bool success = true;
+                for (int j = min; j <= max; j++) {
+                    if (i % j != 0) {
+                        success = false;
+                        break;
+                    }
+                }
+                if (!success) {
+                    continue;
+                }
+                return i;
+            }
+        }
+
     }
 }

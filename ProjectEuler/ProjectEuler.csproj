@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\InputArguments\IInputArgument.cs" />
+    <Compile Include="Framework\InputArguments\LargerThan.cs" />
     <Compile Include="Framework\MathUtils.cs" />
-    <Compile Include="Framework\Problem.cs" />
+    <Compile Include="Framework\IProblem.cs" />
     <Compile Include="Problems\Problem1.cs" />
     <Compile Include="Problems\Problem10.cs" />
     <Compile Include="Problems\Problem11.cs" />

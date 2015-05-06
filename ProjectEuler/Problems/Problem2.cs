@@ -3,7 +3,7 @@ using System.Linq;
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    public class Problem2 : Problem{
+    public class Problem2 : IProblem{
         public string Name {
             get { return "Even Fibonacci numbers"; }
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    public class Problem10 : Problem {
+    public class Problem10 : IProblem {
         public string Name {
             get { return "Summation of primes"; }
         }

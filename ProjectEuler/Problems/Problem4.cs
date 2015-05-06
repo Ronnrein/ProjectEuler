@@ -2,7 +2,7 @@
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    public class Problem4 : Problem{
+    public class Problem4 : IProblem{
         public string Name {
             get { return "Largest palindrome product"; }
         }

@@ -3,7 +3,7 @@ using System.Linq;
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    public class Problem1 : Problem{
+    public class Problem1 : IProblem{
         public string Name {
             get { return "Multiples of 3 and 5"; }
         }

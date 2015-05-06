@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using ProjectEuler.Framework.InputArguments;
 
 namespace ProjectEuler.Framework {
     static class Utils {
@@ -12,15 +13,15 @@ namespace ProjectEuler.Framework {
         /// Get problem object from supplied id
         /// </summary>
         /// <param name="id">Id of problem to get</param>
-        /// <returns>Problem object</returns>
+        /// <returns>IProblem object</returns>
         /// <exception cref="ArgumentException">Thrown whenever a problem id can not be found</exception>
-        public static Problem GetProblem(int id) {
+        public static IProblem GetProblem(int id) {
             string problemCheck = "ProjectEuler.Problems.Problem" + id;
             Type type = Type.GetType(problemCheck);
             if (type == null) {
                 throw new ArgumentException("There is no problem with id "+id);
             }
-            return (Problem)Activator.CreateInstance(type);
+            return (IProblem)Activator.CreateInstance(type);
         }
 
         /// <summary>
@@ -46,27 +47,40 @@ namespace ProjectEuler.Framework {
         /// Get all problem objects
         /// </summary>
         /// <returns>List containing all problem objects</returns>
-        public static List<Problem> GetAllProblems() {
-            List<Problem> problems = new List<Problem>();
+        public static List<IProblem> GetAllProblems() {
+            List<IProblem> problems = new List<IProblem>();
             foreach (int i in GetProblemList()) {
                 problems.Add(GetProblem(i));
             }
             return problems;
-        } 
+        }
 
         /// <summary>
         /// Get user input
         /// </summary>
         /// <typeparam name="T">The type of input you want</typeparam>
         /// <param name="msg">Message to display to user</param>
+        /// <param name="args">Input arguments to check for</param>
         /// <returns>The user input converted to desired type</returns>
-        public static T GetInput<T>(string msg) {
+        public static T GetInput<T>(string msg, IInputArgument<T>[] args = null) {
+            args = args ?? new IInputArgument<T>[0];
             TypeConverter converter = TypeDescriptor.GetConverter(typeof (T));
             while (true) {
                 Console.WriteLine(msg);
                 string input = Console.ReadLine();
                 try {
                     T value = (T) converter.ConvertFromString(input);
+                    bool success = true;
+                    foreach (IInputArgument<T> arg in args) {
+                        if (!arg.Test(value)) {
+                            Console.WriteLine(arg.Error);
+                            success = false;
+                            break;
+                        }
+                    }
+                    if (!success) {
+                        continue;
+                    }
                     return value;
                 }
                 catch (Exception e) {

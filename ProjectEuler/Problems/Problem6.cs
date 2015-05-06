@@ -2,7 +2,7 @@
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    public class Problem6 : Problem {
+    public class Problem6 : IProblem {
         public string Name {
             get { return "Sum square difference"; }
         }

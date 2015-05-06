@@ -2,7 +2,7 @@
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    class Problem12 : Problem {
+    class Problem12 : IProblem {
         public string Name {
             get { return "Highly divisible triangular number"; }
         }

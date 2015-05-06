@@ -2,7 +2,7 @@
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    public class Problem7 : Problem{
+    public class Problem7 : IProblem{
         public string Name {
             get { return "10001st prime"; }
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    public class Problem3 : Problem{
+    public class Problem3 : IProblem{
         public string Name {
             get { return "Name of problem"; }
         }
