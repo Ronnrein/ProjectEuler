@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -53,6 +54,35 @@ namespace ProjectEuler.Framework {
                 problems.Add(GetProblem(i));
             }
             return problems;
+        }
+
+        /// <summary>
+        /// Run supplied problem, and output timing information
+        /// </summary>
+        /// <param name="problem">Problem object to run</param>
+        public static void RunProblem(IProblem problem) {
+            Console.WriteLine("Running problem " + problem.Id + ": " + problem.Name);
+            Stopwatch watch = Stopwatch.StartNew();
+            problem.Run();
+            watch.Stop();
+            Console.WriteLine("Problem finished in " + watch.ElapsedMilliseconds + "ms");
+        }
+
+        /// <summary>
+        /// Gets the problem object, then runs it
+        /// </summary>
+        /// <param name="problem">ID of problem</param>
+        public static void RunProblem(int problem) {
+            RunProblem(GetProblem(problem));
+        }
+
+        /// <summary>
+        /// Run all problems
+        /// </summary>
+        public static void RunAllProblems() {
+            foreach (IProblem problem in GetAllProblems()) {
+                RunProblem(problem);
+            }
         }
 
         /// <summary>

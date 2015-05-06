@@ -14,12 +14,7 @@ namespace ProjectEuler {
                 Console.WriteLine("Available problems: " + string.Join(", ", Utils.GetProblemList()));
                 int id = Utils.GetInput<int>("Please input problem id");
                 try {
-                    IProblem p = Utils.GetProblem(id);
-                    Console.WriteLine("Running problem " + p.Id + ": " + p.Name);
-                    Stopwatch watch = Stopwatch.StartNew();
-                    p.Run();
-                    watch.Stop();
-                    Console.WriteLine("IProblem finished in " + watch.ElapsedMilliseconds + "ms");
+                    Utils.RunProblem(id);
                     Console.WriteLine("Would you like to run another problem? y/n");
                     repeat = Console.ReadLine().ToLower() == "y";
                 }
