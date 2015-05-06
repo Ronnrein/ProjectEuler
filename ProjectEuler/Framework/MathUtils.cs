@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Threading;
+using System.Numerics;
 
 namespace ProjectEuler.Framework {
     static class MathUtils {
@@ -36,6 +35,23 @@ namespace ProjectEuler.Framework {
                 }
             }
             return primes;
+        }
+
+        /// <summary>
+        /// Get Nth prime number
+        /// </summary>
+        /// <param name="n">The prime number to find</param>
+        /// <returns>Desired prime number</returns>
+        public static int GetPrime(int n) {
+            int i = 2;
+            int p = 0;
+            while (p < n) {
+                if (IsPrime(i)) {
+                    p++;
+                }
+                i++;
+            }
+            return i-1;
         }
 
         /// <summary>
@@ -196,14 +212,14 @@ namespace ProjectEuler.Framework {
         /// </summary>
         /// <param name="min">Minimum number</param>
         /// <param name="max">Maximum number</param>
-        /// <returns></returns>
+        /// <returns>The smallest multiple between the two numbers</returns>
         public static int SmallestMultiple(int min, int max) {
             int i = 0;
             while (true) {
                 i++;
                 bool success = true;
                 for (int j = min; j <= max; j++) {
-                    if (i % j != 0) {
+                    if (!IsEvenlyDivisable(i, j)) {
                         success = false;
                         break;
                     }
@@ -213,6 +229,42 @@ namespace ProjectEuler.Framework {
                 }
                 return i;
             }
+        }
+
+        /// <summary>
+        /// Checks whether the two numbers are evenly divisable
+        /// </summary>
+        /// <param name="num1">First number</param>
+        /// <param name="num2">Second number</param>
+        /// <returns>Whether the number is evenly divisable</returns>
+        public static bool IsEvenlyDivisable(int num1, int num2) {
+            return num1%num2 == 0;
+        }
+
+        /// <summary>
+        /// Find largest product in a string of numbers
+        /// </summary>
+        /// <param name="series">String of numbers</param>
+        /// <param name="digits">Number of digits to get a product from</param>
+        /// <returns>The largest product in this series</returns>
+        public static long LargestProductInSeries(string series, int digits) {
+            long largest = 0;
+            for (int i = 0; i < series.Length - digits; i++) {
+                long sum = 0;
+                for (int j = 0; j < digits; j++) {
+                    int num = (int) Char.GetNumericValue(series[i + j]);
+                    if (num == 0) {
+                        i += j;
+                        sum = 0;
+                        break;
+                    }
+                    sum = sum != 0 ? sum*num : num;
+                }
+                if (sum > largest) {
+                    largest = sum;
+                }
+            }
+            return largest;
         }
 
     }

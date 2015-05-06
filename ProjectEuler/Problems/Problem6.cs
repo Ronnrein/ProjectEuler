@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ProjectEuler.Framework;
+using ProjectEuler.Framework.InputArguments;
 
 namespace ProjectEuler.Problems {
     public class Problem6 : IProblem {
@@ -12,34 +15,12 @@ namespace ProjectEuler.Problems {
         }
 
         public void Run() {
-            while (true) {
-                int num = 0;
-                Console.WriteLine("Enter how many numbers to be squared");
-                if (Int32.TryParse(Console.ReadLine(), out num)) {
-                    if (num <= 1) {
-                        Console.WriteLine("Has to be above 1");
-                    }
-                    else {
-                        int result = SumSquareDifference(num);
-                        Console.WriteLine("The sum of square difference with "+num+" natural numbers is "+result);
-                        return;
-                    }
-                }
-                
-            }
-        }
-
-        private int SumSquareDifference(int nums) {
-            int sumSquares = 0;
-            int squareSum = 0;
-            for (int i = 1; i <= nums; i++) {
-                sumSquares += i*i;
-                squareSum += i;
-            }
-            squareSum = squareSum*squareSum;
-            Console.WriteLine(Program.workingPrefix+"Sum of squares is "+sumSquares);
-            Console.WriteLine(Program.workingPrefix+"Square of sum is "+squareSum);
-            return squareSum - sumSquares;
+            int num = Utils.GetInput("Enter how many numbers to be squared", new InputArguments.LargerThan<int>(1));
+            int[] nums = Enumerable.Range(1, num).ToArray();
+            int squareOfSum = nums.Sum()*nums.Sum();
+            int sumOfSquares = nums.Select(n => n*n).Sum();
+            int diff = squareOfSum - sumOfSquares;
+            Console.WriteLine("The sum of square difference with "+num+" natural numbers is "+diff);
         }
     }
 }

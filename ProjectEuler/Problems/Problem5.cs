@@ -14,11 +14,10 @@ namespace ProjectEuler.Problems
         }
 
         public void Run() {
-            int min = Utils.GetInput("Enter minimum number", new IInputArgument<int>[] { new LargerThan<int>(0) });
-            int max = Utils.GetInput("Enter maximum number", new IInputArgument<int>[] { new LargerThan<int>(min) });
+            int min = Utils.GetInput("Enter minimum number", new InputArguments.LargerThan<int>(0));
+            int max = Utils.GetInput("Enter maximum number", new InputArguments.LargerThan<int>(min));
             int result = MathUtils.SmallestMultiple(min, max);
             Console.WriteLine("The smallest multiple between "+min+" and "+max+" is "+result);
-
         }
     }
 }

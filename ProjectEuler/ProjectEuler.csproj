@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\InputArguments\IInputArgument.cs" />
-    <Compile Include="Framework\InputArguments\LargerThan.cs" />
+    <Compile Include="Framework\InputArguments\InputArguments.cs" />
     <Compile Include="Framework\MathUtils.cs" />
     <Compile Include="Framework\IProblem.cs" />
     <Compile Include="Problems\Problem1.cs" />

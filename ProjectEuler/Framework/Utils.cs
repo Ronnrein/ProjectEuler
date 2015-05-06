@@ -92,8 +92,7 @@ namespace ProjectEuler.Framework {
         /// <param name="msg">Message to display to user</param>
         /// <param name="args">Input arguments to check for</param>
         /// <returns>The user input converted to desired type</returns>
-        public static T GetInput<T>(string msg, IInputArgument<T>[] args = null) {
-            args = args ?? new IInputArgument<T>[0];
+        public static T GetInput<T>(string msg, params IInputArgument<T>[] args) {
             TypeConverter converter = TypeDescriptor.GetConverter(typeof (T));
             while (true) {
                 Console.WriteLine(msg);
