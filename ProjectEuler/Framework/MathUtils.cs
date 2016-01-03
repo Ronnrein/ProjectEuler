@@ -170,6 +170,7 @@ namespace ProjectEuler.Framework {
             int max = nums[0];
             int largest = 0;
             while (nums[0] > 0) {
+                Console.WriteLine(largest+" - "+nums[nums.Length-2]);
                 for (int i = max; i >= 1; i--) {
                     nums[nums.Length - 1] = i;
                     int sum = nums.Aggregate((a, x) => a*x);

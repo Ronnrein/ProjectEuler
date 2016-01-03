@@ -33,9 +33,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,10 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Framework\InputArguments\IInputArgument.cs" />
-    <Compile Include="Framework\InputArguments\InputArguments.cs" />
+    <Compile Include="Framework\Attributes\CustomAttribute.cs" />
+    <Compile Include="Framework\Attributes\DescriptionAttribute.cs" />
+    <Compile Include="Framework\Attributes\RangeAttribute.cs" />
+    <Compile Include="Framework\EulerProblemField.cs" />
+    <Compile Include="Framework\EulerProblem.cs" />
     <Compile Include="Framework\MathUtils.cs" />
-    <Compile Include="Framework\IProblem.cs" />
     <Compile Include="Problems\Problem1.cs" />
     <Compile Include="Problems\Problem10.cs" />
     <Compile Include="Problems\Problem11.cs" />
@@ -60,6 +64,7 @@
     <Compile Include="Problems\Problem8.cs" />
     <Compile Include="Problems\Problem9.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectEuler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Framework\Utils.cs" />
   </ItemGroup>

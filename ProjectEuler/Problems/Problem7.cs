@@ -1,21 +1,25 @@
 ﻿using System;
 using ProjectEuler.Framework;
-using ProjectEuler.Framework.InputArguments;
+using ProjectEuler.Framework.Attributes;
 
 namespace ProjectEuler.Problems {
-    public class Problem7 : IProblem{
-        public string Name {
+    public class Problem7 : EulerProblem {
+
+        [Description("Enter Nth prime number to find")]
+        [Range(0, Int32.MaxValue)]
+        public int num;
+
+        public override string Name {
             get { return "10001st prime"; }
         }
 
-        public int Id {
+        public override int Id {
             get { return 7; }
         }
 
-        public void Run() {
-            int num = Utils.GetInput("Enter Nth prime number to find", new InputArguments.LargerThan<int>(0));
+        public override string Run() {
             int prime = MathUtils.GetPrime(num);
-            Console.WriteLine("The "+Utils.AddOrdinal(num)+" prime number is "+prime);
+            return "The "+Utils.AddOrdinal(num)+" prime number is "+prime;
         }
     }
 }

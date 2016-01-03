@@ -1,21 +1,26 @@
-﻿using System;
-using ProjectEuler.Framework;
+﻿using ProjectEuler.Framework;
+using ProjectEuler.Framework.Attributes;
 
 namespace ProjectEuler.Problems {
-    public class Problem4 : IProblem{
-        public string Name {
+    public class Problem4 : EulerProblem{
+
+        [Description("Enter number of digits to search for")]
+        public int digits;
+
+        [Description("Enter how many numbers to search for")]
+        public int numbers;
+
+        public override string Name {
             get { return "Largest palindrome product"; }
         }
 
-        public int Id {
+        public override int Id {
             get { return 4; }
         }
 
-        public void Run() {
-            int digits = Utils.GetInput<int>("Enter number of digits to search for");
-            int numbers = Utils.GetInput<int>("Enter how many "+digits+"-digit numbers to search for");
+        public override string Run() {
             int result = MathUtils.LargestPalindromeProduct(digits, numbers);
-            Console.WriteLine("The largest palindrome made from the product of "+numbers+" "+digits+"-digit numbers is "+result);
+            return "The largest palindrome made from the product of "+numbers+" "+digits+"-digit numbers is "+result;
         }
     }
 }

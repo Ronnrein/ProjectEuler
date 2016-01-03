@@ -1,21 +1,24 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using ProjectEuler.Framework;
+using ProjectEuler.Framework.Attributes;
 
 namespace ProjectEuler.Problems {
-    public class Problem2 : IProblem{
-        public string Name {
+    public class Problem2 : EulerProblem {
+
+        [Description("Enter max fibonacci number")]
+        public int max;
+
+        public override string Name {
             get { return "Even Fibonacci numbers"; }
         }
 
-        public int Id {
+        public override int Id {
             get { return 2; }
         }
 
-        public void Run() {
-            int max = Utils.GetInput<int>("Enter max fibonacci number");
-            int sum = MathUtils.Fibonacci(4000000).Where(n => !MathUtils.IsOdd(n)).Sum();
-            Console.WriteLine("Sum of all even fibonacci numbers below "+max+" is "+sum);
+        public override string Run() {
+            int sum = MathUtils.Fibonacci(max).Where(n => !MathUtils.IsOdd(n)).Sum();
+            return "Sum of all even fibonacci numbers below "+max+" is "+sum;
         }
     }
 }

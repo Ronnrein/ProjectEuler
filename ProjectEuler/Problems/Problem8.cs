@@ -1,18 +1,21 @@
-﻿using System;
-using ProjectEuler.Framework;
-using ProjectEuler.Framework.InputArguments;
+﻿using ProjectEuler.Framework;
+using ProjectEuler.Framework.Attributes;
 
 namespace ProjectEuler.Problems {
-    public class Problem8 : IProblem {
-        public string Name {
+    public class Problem8 : EulerProblem {
+
+        [Description("How many digits should be checked?")]
+        public int digits;
+
+        public override string Name {
             get { return "Largest product in a series"; }
         }
 
-        public int Id {
+        public override int Id {
             get { return 8; }
         }
 
-        public void Run() {
+        public override string Run() {
 
             string series =
                 "73167176531330624919225119674426574742355349194934" +
@@ -36,9 +39,8 @@ namespace ProjectEuler.Problems {
                 "05886116467109405077541002256983155200055935729725" +
                 "71636269561882670428252483600823257530420752963450";
 
-            int digits = Utils.GetInput("How many digits should be checked?", new InputArguments.LargerThan<int>(1));
             long result = MathUtils.LargestProductInSeries(series, digits);
-            Console.WriteLine("Largest product in this series with " + digits + " adjecent digits is " + result);
+            return "Largest product in this series with " + digits + " adjecent digits is " + result;
         }
     }
 }

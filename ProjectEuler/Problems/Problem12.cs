@@ -1,25 +1,27 @@
-﻿using System;
-using ProjectEuler.Framework;
+﻿using ProjectEuler.Framework;
+using ProjectEuler.Framework.Attributes;
 
 namespace ProjectEuler.Problems {
-    class Problem12 : IProblem {
-        public string Name {
+    class Problem12 : EulerProblem {
+
+        [Description("How many divisors should be searched for?")]
+        public int divisors;
+
+        public override string Name {
             get { return "Highly divisible triangular number"; }
         }
 
-        public int Id {
+        public override int Id {
             get { return 12; }
         }
 
-        public void Run() {
-            int input = Utils.GetInput<int>("How many divisors should be searched for");
+        public override string Run() {
             int i = 1;
             while (true) {
                 int tri = MathUtils.TriangularNumber(i);
-                int divisors = MathUtils.GetAllDivisors(tri).Count;
-                if (divisors > input) {
-                    Console.WriteLine("The "+Utils.AddOrdinal(i)+" triangular number ("+tri+") has "+divisors+" divisors");
-                    return;
+                int d = MathUtils.GetAllDivisors(tri).Count;
+                if (d > divisors) {
+                    return "The "+Utils.AddOrdinal(i)+" triangular number ("+tri+") has "+d+" divisors";
                 }
                 i++;
             }

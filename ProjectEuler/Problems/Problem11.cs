@@ -2,16 +2,18 @@
 using ProjectEuler.Framework;
 
 namespace ProjectEuler.Problems {
-    class Problem11 : IProblem {
-        public string Name {
+    class Problem11 : EulerProblem {
+
+        public override string Name {
             get { return "Largest product in a grid"; }
         }
 
-        public int Id {
+        public override int Id {
             get { return 11; }
         }
 
-        public void Run() {
+        public override string Run() {
+
             int[,] grid= new int[20,20] {
                 {08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08},
                 {49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 04, 56, 62, 00},
@@ -36,7 +38,7 @@ namespace ProjectEuler.Problems {
             };
 
             long result = LargestProductInGrid(grid);
-            Console.WriteLine("Largest product in grid is "+result);
+            return "Largest product in grid is "+result;
         }
 
         private long LargestProductInGrid(int[,] grid, int adjecent = 4) {

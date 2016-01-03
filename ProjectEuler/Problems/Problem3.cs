@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using ProjectEuler.Framework;
+using ProjectEuler.Framework.Attributes;
 
 namespace ProjectEuler.Problems {
-    public class Problem3 : IProblem{
-        public string Name {
+    public class Problem3 : EulerProblem {
+
+        [Description("Enter number to get largest prime factor of")]
+        public long num;
+
+        public override string Name {
             get { return "Name of problem"; }
         }
 
-        public int Id {
+        public override int Id {
             get { return 3; }
         }
 
-        public void Run() {
-            long num = Utils.GetInput<long>("Enter number to get largest prime factor of");
+        public override string Run() {
             int result = MathUtils.GetAllPrimeFactors(num).Max();
-            Console.WriteLine("Largest prime factor of "+num+" is "+result);
+            return "Largest prime factor of "+num+" is "+result;
         }
     }
 }
