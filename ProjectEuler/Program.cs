@@ -38,12 +38,19 @@ namespace ProjectEuler {
                     }
 
                     // Run the problem and print the result
-                    Console.WriteLine(problem.Run());
+                    try {
+                        Console.WriteLine(problem.Run());
+                    }
+                    catch (Exception e) {
+                        Console.WriteLine("An exception occured while trying to run problem "+id+":");
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine(e.StackTrace);
+                    }
+                    
                 }
                 catch (InvalidOperationException e) {
                     Console.WriteLine("No problem with id " + id + ", please try again");
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine(e.StackTrace);
+                    continue;
                 }
 
                 // Check to see if user wants to repeat the program
