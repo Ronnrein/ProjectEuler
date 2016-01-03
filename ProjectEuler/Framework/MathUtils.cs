@@ -276,5 +276,35 @@ namespace ProjectEuler.Framework {
             }
             return largest;
         }
+
+        /// <summary>
+        ///     Returns the collatz sequence for given number
+        /// </summary>
+        /// <param name="num">Number to generate collatz sequence for</param>
+        /// <returns>Collatz sequence for number</returns>
+        public static List<int> CollatzSequence(int num) {
+            Console.WriteLine(num);
+            List<int> chain = new List<int>();
+            while (num != 1) {
+                num = IsOdd(num) ? 3 * num + 1 : num / 2;
+                chain.Add(num);
+            }
+            return chain;
+        }
+
+        /// <summary>
+        ///     Return the length of the collatz sequence for given number
+        /// </summary>
+        /// <param name="num">Number to return length for</param>
+        /// <returns>Length of collatz sequence</returns>
+        public static int CollatzSequenceLength(int num) {
+            int length = 1;
+            long current = num;
+            while (current != 1) {
+                current = current % 2 == 0 ? current / 2 : 3 * current + 1;
+                length++;
+            }
+            return length;
+        }
     }
 }
