@@ -93,6 +93,11 @@ namespace ProjectEuler.Framework {
             Console.WriteLine(msg);
         }
 
+        /// <summary>
+        /// Prints a twodimensional array
+        /// </summary>
+        /// <typeparam name="T">Any type</typeparam>
+        /// <param name="array">Twodimensional array</param>
         public static void PrintGrid<T>(this T[,] array) {
             for (int i = 0; i < array.GetLength(0); i++) {
                 if (i > 0) {
@@ -106,6 +111,62 @@ namespace ProjectEuler.Framework {
                 }
             }
             Console.Write("\n");
+        }
+
+        /// <summary>
+        /// Returns the word representation of integer up until 999999
+        /// </summary>
+        /// <param name="num">Number to get words for</param>
+        /// <returns>String containing words for the number</returns>
+        public static string ToWord(this int num) {
+            string[] numbers = {
+                "one", "two", "three", "four", "five", "six", "seven", "eight",
+                "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+                "sixteen", "seventeen", "eighteen", "nineteen"
+            };
+            string[] tens = {
+                "twenty", "thirty", "forty", "fifty",
+                "sixty", "seventy", "eighty", "ninety"
+            };
+            string result = "";
+            while (num > 0) {
+                int digit = int.Parse(num.ToString().Substring(0, 1));
+                if (num < 20) {
+                    if (result.Length > 1 && result.Substring(result.Length - 1) != "-") {
+                        result += " and ";
+                    }
+                    result += numbers[num-1];
+                    num = 0;
+                }
+                else if (num < 100) {
+                    if (result.Length != 0) {
+                        result += " and ";
+                    }
+                    result += tens[digit - 2];
+                    num -= int.Parse(digit+"0");
+                    if (num != 0) {
+                        result += "-";
+                    }
+                }
+                else if (num < 1000) {
+                    result += numbers[digit - 1] + " hundred";
+                    num -= int.Parse(digit + "00");
+                }
+                else if (num < 1000000) {
+                    int offset = num > 99999 ? 3 : num > 9999 ? 2 : 1;
+                    int digits = int.Parse(num.ToString().Substring(0, offset));
+                    string t = digits.ToWord();
+                    result += t + " thousand";
+                    num -= int.Parse(digits + "000");
+                    if (num != 0) {
+                        result += ", ";
+                    }
+                }
+                else {
+                    return "Number too large";
+                }
+            }
+            return result;
         }
 
     }

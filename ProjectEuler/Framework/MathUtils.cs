@@ -342,8 +342,7 @@ namespace ProjectEuler.Framework {
         /// <returns>The sum of all the digits</returns>
         public static long PowerDigitSum(int number, int power) {
             string result = BigInteger.Pow(number, power).ToString();
-            Console.WriteLine("-- "+result+" --");
-            List<int> digits = result.ToString().Select(digit => int.Parse(digit.ToString())).ToList();
+            List<int> digits = result.Select(digit => int.Parse(digit.ToString())).ToList();
             return digits.Sum();
         }
 
