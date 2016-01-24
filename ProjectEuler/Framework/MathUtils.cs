@@ -306,5 +306,29 @@ namespace ProjectEuler.Framework {
             }
             return length;
         }
+
+        /// <summary>
+        ///     Returns the amount of lattice paths for a grid
+        /// </summary>
+        /// <param name="size">Width and height of grid</param>
+        /// <returns>Amount of paths for grid</returns>
+        public static long LatticePathCount(int gridSize) {
+            return PascalTriangleGrid((gridSize*2) + 1).Cast<long>().Max();
+        }
+
+        /// <summary>
+        ///     Returns a twodimensional array containing the pascal triangle with supplied length
+        /// </summary>
+        /// <param name="length">Length of pascal triangle</param>
+        /// <returns>Twodimensional array containing the triangle</returns>
+        public static long[,] PascalTriangleGrid(int length) {
+            long[,] cache = new long[length, length];
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j <= i; j++) {
+                    cache[i, j] = (j == 0 || j == i) ? 1 : cache[i - 1, j - 1] + cache[i - 1, j];
+                }
+            }
+            return cache;
+        }
     }
 }

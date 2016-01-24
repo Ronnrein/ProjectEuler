@@ -93,5 +93,20 @@ namespace ProjectEuler.Framework {
             Console.WriteLine(msg);
         }
 
+        public static void PrintGrid<T>(this T[,] array) {
+            for (int i = 0; i < array.GetLength(0); i++) {
+                if (i > 0) {
+                    Console.Write("\n");
+                }
+                for (int j = 0; j < array.GetLength(1); j++) {
+                    if (j > 0) {
+                        Console.Write("\t");
+                    }
+                    Console.Write(array[i, j]);
+                }
+            }
+            Console.Write("\n");
+        }
+
     }
 }
