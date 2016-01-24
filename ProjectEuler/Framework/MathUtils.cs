@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Numerics;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace ProjectEuler.Framework {
     internal static class MathUtils {
+
         /// <summary>
         ///     Check whether a number is prime or not
         /// </summary>
@@ -330,5 +333,19 @@ namespace ProjectEuler.Framework {
             }
             return cache;
         }
+
+        /// <summary>
+        ///     Returns the sum of all the digits from the result of a power of a number
+        /// </summary>
+        /// <param name="number">Number to use</param>
+        /// <param name="power">Power to use</param>
+        /// <returns>The sum of all the digits</returns>
+        public static long PowerDigitSum(int number, int power) {
+            string result = BigInteger.Pow(number, power).ToString();
+            Console.WriteLine("-- "+result+" --");
+            List<int> digits = result.ToString().Select(digit => int.Parse(digit.ToString())).ToList();
+            return digits.Sum();
+        }
+
     }
 }
